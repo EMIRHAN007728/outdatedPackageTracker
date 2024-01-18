@@ -1,7 +1,7 @@
 const getPackage = require('./getPackage')
 const getVersions = require('./getVersions')
 
-async function compareVersion(req, res, owner, repo) {
+async function compareVersion(owner, repo) {
   try {
     // GitHub reposundan package.json içeriğini al
     const packageJsonContent = await getPackage(owner, repo)
@@ -34,13 +34,9 @@ async function compareVersion(req, res, owner, repo) {
     })
 
     // Eski sürümleri içeren diziyi yazdır
-    res.status(200).json(outdatedModules)
     return outdatedModules
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: 'Internal Server Error', details: err.message })
-    throw new Error('Internal Server Error')
+    return 'Version Error'
   }
 }
 
