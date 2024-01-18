@@ -26,7 +26,7 @@ const sendOutdatedPackageEmail = async (email, db) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Outdatedpackage Warning',
-        text: 'Outdated Packages: ' + JSON.stringify(outdatedpackages),
+        text: 'Outdated Packages: ' + JSON.stringify(outdatedpackages, null, 2),
       }
 
       // Mail gönder
